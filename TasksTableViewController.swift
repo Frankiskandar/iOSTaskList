@@ -69,6 +69,19 @@ class TasksTableViewController: UITableViewController {
 
         return cell
     }
+    
+    // MARK - actionas
+    
+    @IBAction func unwindToTaskList(sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? TaskViewController, let task = sourceViewController.task {
+            
+            // add 
+            let newIndexPath = IndexPath(row: taskList.Count(), section: 0)
+            taskList.add(task)
+            tableView.insertRows(at: [newIndexPath], with: .automatic)
+        }
+        
+    }
 
     /*
     // Override to support conditional editing of the table view.

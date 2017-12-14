@@ -22,6 +22,7 @@ class TaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerSelector = arr[row]
         PriorityButton.setTitle(pickerSelector, for: .normal)
+        //PriorityPicker.isHidden = true
     }
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
@@ -43,6 +44,8 @@ class TaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
     @IBOutlet weak var PriorityPicker: UIPickerView!
     
     
+    // Done Button
+    @IBOutlet weak var DoneButton: UIButton!
     
     
     // DueDate
@@ -64,6 +67,7 @@ class TaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         super.viewDidLoad()
         PriorityPicker.isHidden = true
         DueDatePicker.isHidden = true
+        DoneButton.isHidden = true
         DueDatePicker.datePickerMode = UIDatePickerMode.date
         //DueDateButton.text = DueDatePicker
         DueDatePicker.addTarget(self, action: #selector(datePickerValueChanged), for: UIControlEvents.valueChanged)
@@ -88,6 +92,7 @@ class TaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
         dateFormatter.timeStyle = DateFormatter.Style.none
         
+        
         DueDateButton.setTitle(dateFormatter.string(from: sender.date), for: .normal)
         
         dueDate = sender.date
@@ -95,21 +100,34 @@ class TaskViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDa
         
     }
     
-    // priority button
+//    // priority button
+
+
     @IBAction func PriorityButtonAction(_ sender: Any) {
         
-        PriorityPicker.isHidden = false
+            PriorityPicker.isHidden = false
+            DoneButton.isHidden = false
     }
     
     
-    // duedate button
-    @IBAction func DueDateButtonAction(_ sender: Any) {
-        
+//    // duedate button
+//    PriorityPicker.isHidden = true
+//    DueDatePicker.isHidden = false
+//    DoneButton.isHidden = false
+//    print(PriorityPicker.isHidden)
+
+    @IBAction func DueDateButton(_ sender: Any) {
         DueDatePicker.isHidden = false
+            DoneButton.isHidden = false
     }
     
-
-
+    @IBAction func DoneButtonAction(_ sender: Any) {
+        
+        PriorityPicker.isHidden = true
+        DueDatePicker.isHidden = true
+        DoneButton.isHidden = true
+    }
+    
     
     // MARK: - Navigation
 

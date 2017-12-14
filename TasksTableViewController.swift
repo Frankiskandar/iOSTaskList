@@ -64,7 +64,19 @@ class TasksTableViewController: UITableViewController {
         let task = taskList.tasks[indexPath.row]
         // Configure the cell...
         cell.taskNameLabel.text = task.text as String
-        cell.dueDateLabel.text = String(describing: task.dueDate)
+        if let date = task.dueDate {
+            let dateFormatter = DateFormatter()
+            
+            dateFormatter.dateStyle = DateFormatter.Style.medium
+            
+            dateFormatter.timeStyle = DateFormatter.Style.none
+            
+            
+            //DueDateButton.setTitle(dateFormatter.string(from: sender.date), for: .normal)
+            
+            cell.dueDateLabel.text = "Due: " + dateFormatter.string(from: date)
+
+        }
         
 
         return cell
